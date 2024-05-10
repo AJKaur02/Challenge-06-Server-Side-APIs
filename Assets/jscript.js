@@ -49,31 +49,32 @@ function displayCurrentWeather(weatherData) {
 }
 
 function displayForecastWeather(weatherData) {
-  if (!weatherData || !weatherData.list || weatherData.list.length === 0) {
-    console.error('Invalid forecast data:', weatherData);
-    return;
+    if (!weatherData || !weatherData.list || weatherData.list.length === 0) {
+      console.error('Invalid forecast data:', weatherData);
+      return;
+    }
+  
+    forecastSection.innerHTML = ''; // Clear previous forecast data
+  
+    for (let i = 0; i < 5; i++) { // Display only 5 forecast items
+      const forecastItem = weatherData.list[i * 8]; // Adjust index to skip 3-hour intervals
+      const forecastDate = new Date(forecastItem.dt * 1000).toLocaleDateString();
+      const forecastIcon = forecastItem.weather[0].icon;
+  
+      const forecastCard = document.createElement('div');
+      forecastCard.classList.add('forecast-box');
+      forecastCard.innerHTML = `
+        <h3>${forecastDate}</h3>
+        <img src="http://openweathermap.org/img/wn/${forecastIcon}.png" alt="weather-icon" class="weather-icon">
+        <p>Temperature: ${forecastItem.main.temp}°C</p>
+        <p>Humidity: ${forecastItem.main.humidity}%</p>
+        <p>Wind Speed: ${forecastItem.wind.speed} m/s</p>
+      `;
+  
+      forecastSection.appendChild(forecastCard);
+    }
   }
-
-  forecastSection.innerHTML = ''; // Clear previous forecast data
-
-  for (let i = 0; i < weatherData.list.length; i += 8) {
-    const forecastItem = weatherData.list[i];
-    const forecastDate = new Date(forecastItem.dt * 1000).toLocaleDateString();
-    const forecastIcon = forecastItem.weather[0].icon;
-
-    const forecastCard = document.createElement('div');
-    forecastCard.classList.add('weather-card');
-    forecastCard.innerHTML = `
-      <h3>${forecastDate}</h3>
-      <img src="http://openweathermap.org/img/wn/${forecastIcon}.png" alt="weather-icon" class="weather-icon">
-      <p>Temperature: ${forecastItem.main.temp}°C</p>
-      <p>Humidity: ${forecastItem.main.humidity}%</p>
-      <p>Wind Speed: ${forecastItem.wind.speed} m/s</p>
-    `;
-
-    forecastSection.appendChild(forecastCard);
-  }
-}
+  
 
 // Remaining code for search history and event listeners...
 
