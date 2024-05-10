@@ -1,0 +1,101 @@
+/* Common styles for all devices */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    text-align: center;
+    padding: 5px;
+    background: linear-gradient(to right, #2c37d7, #8f7aff);
+    font-size: 25px;
+}
+  
+h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+  main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Default: stack elements in a column */
+  }
+  
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+button {
+    background-color: #5f82ff;
+}
+
+  .weather-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .weather-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  #weather-info-labels {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  #forecast-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .forecast-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .forecast-box {
+    flex: 1 1 calc(20% - 10px); /* Auto-adjust width based on available space */
+    max-width: calc(20% - 10px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in box sizing */
+    background-color: rgb(150, 150, 150);
+    color: white;
+  }
+  /* Media queries for responsive design */
+  @media (min-width: 634px) {
+    /* Styles for devices with width >= 634px */
+    main {
+      flex-direction: row; /* Align items in rows */
+      gap: 20px; /* Add spacing between elements */
+    }
+  
+    .search-container {
+      flex: 1; /* Take remaining space */
+      margin-bottom: 0; /* Remove bottom margin */
+    }
+  
+    .weather-info {
+      flex: 1; /* Take remaining space */
+    }
+  
+    .forecast-box {
+      flex-basis: calc(20% - 20px); /* Adjust width for 5 boxes in a row */
+      max-width: calc(20% - 20px);
+    }
+  }
+  
